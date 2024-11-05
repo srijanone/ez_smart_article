@@ -1,0 +1,275 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - entity_browser.browser.smart_image_browser
+    - field.field.node.smart_article.body
+    - field.field.node.smart_article.field_company_name
+    - field.field.node.smart_article.field_meta_tags
+    - field.field.node.smart_article.field_podcast
+    - field.field.node.smart_article.field_smart_media_image
+    - field.field.node.smart_article.field_smart_tags
+    - field.field.node.smart_article.field_smart_text_summary
+    - field.field.node.smart_article.field_transcribe
+    - node.type.smart_article
+  module:
+    - content_moderation
+    - entity_browser
+    - ezcontent_smart_article
+    - field_group
+    - inline_entity_form
+    - metatag
+    - path
+    - scheduler
+    - scheduler_content_moderation_integration
+    - text
+third_party_settings:
+  field_group:
+    group_auto_generate_article_from:
+      children:
+        - field_company_name
+        - body
+      parent_name: ''
+      weight: 6
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Auto Generate Article from Data Points'
+      region: content
+    group_auto_generate_summary:
+      children:
+        - field_smart_text_summary
+        - group_generate_tags
+      parent_name: ''
+      weight: 14
+      format_type: fieldset
+      format_settings:
+        description: 'AI powered summary generation and tags suggestions.'
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Auto Generate Summary and Tags for Article Body'
+      region: content
+    group_generate_tags:
+      children:
+        - field_smart_tags
+      parent_name: group_auto_generate_summary
+      weight: 20
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Generate Tags'
+      region: content
+    group_auto_generate_podcast:
+      children:
+        - field_podcast
+      parent_name: ''
+      weight: 15
+      format_type: fieldset
+      format_settings:
+        description: 'AI powered Text to Speech'
+        id: ''
+        classes: ''
+        required_fields: false
+      label: 'Auto Generate Podcast'
+      region: content
+    group_auto_generate_transcribe:
+      children:
+        - field_transcribe
+      parent_name: ''
+      weight: 16
+      format_type: fieldset
+      region: content
+      format_settings:
+        description: 'AI powered Speech to Text'
+        id: ''
+        classes: ''
+        required_fields: false
+      label: 'Auto Generate Transcribe'
+id: node.smart_article.default
+targetEntityType: node
+bundle: smart_article
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_company_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_meta_tags:
+    weight: 17
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
+  field_podcast:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: smart_podcast_entity_reference_widget
+    region: content
+  field_smart_media_image:
+    type: entity_browser_entity_reference
+    weight: 13
+    settings:
+      entity_browser: smart_image_browser
+      field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: default
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: true
+    third_party_settings: {  }
+    region: content
+  field_smart_tags:
+    weight: 17
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: ezcontent_smart_tags_autocomplete_tags
+    region: content
+  field_smart_text_summary:
+    weight: 15
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: smart_text_textarea_with_summary
+    region: content
+  field_transcribe:
+    type: inline_entity_form_simple
+    weight: 20
+    settings:
+      form_mode: media_library
+      label_singular: ''
+      label_plural: ''
+      revision: false
+      override_labels: false
+      collapsible: false
+      collapsed: false
+    third_party_settings: {  }
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 11
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    region: content
+    third_party_settings: {  }
+  publish_on:
+    type: datetime_timestamp_no_default
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  publish_state:
+    type: scheduler_moderation
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 12
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+  unpublish_on:
+    type: datetime_timestamp_no_default
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  unpublish_state:
+    type: scheduler_moderation
+    weight: 18
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

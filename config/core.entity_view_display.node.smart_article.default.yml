@@ -1,0 +1,87 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.smart_article.body
+    - field.field.node.smart_article.field_company_name
+    - field.field.node.smart_article.field_meta_tags
+    - field.field.node.smart_article.field_podcast
+    - field.field.node.smart_article.field_smart_media_image
+    - field.field.node.smart_article.field_smart_tags
+    - field.field.node.smart_article.field_smart_text_summary
+    - field.field.node.smart_article.field_transcribe
+    - node.type.smart_article
+  module:
+    - ezcontent_smart_article
+    - text
+    - user
+id: node.smart_article.default
+targetEntityType: node
+bundle: smart_article
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_company_name:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_podcast:
+    weight: 7
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: smart_podcast_entity_view
+    region: content
+  field_smart_media_image:
+    type: entity_reference_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_smart_tags:
+    weight: 6
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: ezcontent_smart_tags_entity
+    region: content
+  field_smart_text_summary:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: smart_text_default
+    region: content
+  field_transcribe:
+    type: entity_reference_entity_view
+    weight: 8
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_meta_tags: true

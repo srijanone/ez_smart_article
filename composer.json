@@ -1,0 +1,38 @@
+{
+    "name": "drupal_recipe/ez_ai",
+    "description": "Provides AI Features for EZContent.",
+    "type": "drupal-recipe",
+    "repositories": [
+            {
+                "type": "composer",
+                "url": "https://packages.drupal.org/8"
+            },
+            {
+                "type": "composer",
+                "url": "https://asset-packagist.org"
+            }
+        ],
+    "require": {
+        "srijanone/ezcontent_theme": "^2.1",
+        "srijanone/ezcontent_node": "dev-main",
+        "drupal/entity_browser": "^2.11",
+        "drupal/dropzonejs": "^2.11",
+        "drupal/autocomplete_deluxe": "^2.1",
+        "drupal/components": "^3.1",
+        "drupal/inline_entity_form":"^3.0@RC",
+        "drupal/image_widget_crop": "^2.4",
+        "drupal/media_entity_browser": "^2.0"
+    },
+    "extra": {
+        "patches": {
+            "drupal/core": {
+                "3062441 - Error: Call to a member function getConfigDependencyName() on null": "https://www.drupal.org/files/issues/2024-03-27/3062441-patch-41.patch",
+                "3352384 -Add Exception for TypeError Argument must be String": "https://www.drupal.org/files/issues/2023-08-07/TypeError_htmlspecialchars_ArgumentNustBeTypeString_ArrayGiven-3352384-43.patch"
+                },
+            "drupal/libraries": {
+                "3367706 - after installing libraries module ReverseContainer::generateServiceIdHash()": "https://www.drupal.org/files/issues/2024-09-17/3367706-15.patch"
+                }
+        }
+    },
+    "license": "GPL-2.0-or-later"
+}

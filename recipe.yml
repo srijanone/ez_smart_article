@@ -1,0 +1,119 @@
+name: EZContent AI Feature
+description: 'Provides AI Features for EZContent'
+recipes:
+
+install:
+  - ezcontent_theme
+  - ezcontent_smart_article
+  - ezcontent_node
+  - image_widget_crop
+  - media
+  - media_entity_browser
+  - entity_browser
+  - dropzonejs
+  - dropzonejs_eb_widget
+  - inline_entity_form
+  - autocomplete_deluxe
+  - components
+
+config:
+  import:
+    ezcontent_smart_article: '*'
+    entity_browser: "*"
+    dropzonejs: "*"
+    dropzonejs_eb_widget: "*"
+    inline_entity_form: "*"
+    autocomplete_deluxe: "*"
+    media_entity_browser: "*"
+
+  actions:
+      system.theme:
+        simple_config_update:
+          default: ezcontent_theme
+
+
+    # When a theme is enabled in Drupal, the blocks of the existing theme are
+    # automaticaly duplicated. In our case, on standard, the theme is claro.
+    # We set the blocks we don't want to false, and alter the config of the
+    # blocks that were created.
+      block.block.ezcontent_theme_account_menu:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_breadcrumbs:
+        simple_config_update:
+          status: false
+      block.block.ezcontent_theme_content:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_help:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_main_menu:
+        simple_config_update:
+          region: primary_menu
+          weight: 0
+
+      block.block.ezcontent_theme_messages:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_page_title:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            module:
+              - node
+            theme:
+              - ezcontent_theme
+          id: ezcontent_theme_page_title
+          theme: ezcontent_theme
+          region: content
+          weight: 0
+          provider: null
+          plugin: page_title_block
+          settings:
+            id: page_title_block
+            label: 'Page title'
+            label_display: '0'
+            provider: core
+          visibility:
+            'entity_bundle:node':
+              id: 'entity_bundle:node'
+              negate: false
+              context_mapping:
+                node: '@node.node_route_context:node'
+              bundles:
+                article: article
+                page: page
+
+      block.block.ezcontent_theme_powered:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_primary_admin_actions:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_primary_local_tasks:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_search_form_narrow:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_search_form_wide:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_secondary_local_tasks:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_syndicate:
+        simple_config_update:
+          status: false
