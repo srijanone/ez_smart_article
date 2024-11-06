@@ -1,5 +1,5 @@
 {
-    "name": "drupal_recipe/ez_ai",
+    "name": "drupal/ez_smart_article",
     "description": "Provides AI Features for EZContent.",
     "type": "drupal-recipe",
     "repositories": [
@@ -14,7 +14,8 @@
         ],
     "require": {
         "srijanone/ezcontent_theme": "^2.1",
-        "srijanone/ezcontent_node": "dev-main",
+        "srijanone/ezcontent_node": "^1.0.1",
+        "srijanone/ezcontent_smart_article": "^1.0.1",
         "drupal/entity_browser": "^2.11",
         "drupal/dropzonejs": "^2.11",
         "drupal/autocomplete_deluxe": "^2.1",
