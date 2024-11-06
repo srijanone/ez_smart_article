@@ -67,7 +67,7 @@ composer require drupal/ez_smart_article:^1.0.1
 ```bash
 composer install
 drush si
-drush recipe recipes/contrib/ez_ai;
+drush recipe recipes/contrib/ez_smart_article;
 ```
 
 ### B. Create a new project using ddev
@@ -138,7 +138,7 @@ ddev composer require drupal/ez_smart_article:^1.0.1
 ```bash
 ddev composer install
 ddev drush si
-ddev drush recipe recipes/contrib/ez_ai;
+ddev drush recipe recipes/contrib/ez_smart_article;
 ```
 
 ### C. Install the recipe in existing project
@@ -196,7 +196,7 @@ composer require drupal/ez_smart_article:^1.0.1
 #### 10. Now run below commands to configure your site
 ```bash
 composer install
-drush recipe recipes/contrib/ez_ai;
+drush recipe recipes/contrib/ez_smart_article;
 ```
 
 ## Tech Stack
